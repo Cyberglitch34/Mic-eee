@@ -977,6 +977,19 @@ body.theme-dark .during-card.highlighted {
     background: #e3f2fd;
     color: #0d47a1;
 }
+
+/* Duration pill for how long a topic/question was discussed */
+.duration-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    margin-left: 8px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background: #fff8e1;
+    color: #5d4037;
+}
 /* Compact summary layout */
 .action-item {
     padding: 8px 12px;

@@ -448,9 +448,27 @@ function makeDuringCard(text) {
 
     const checkbox = row.querySelector(".check-box");
     checkbox.addEventListener("click", () => {
+        const now = Date.now();
+
         checkbox.classList.toggle("checked");
         row.classList.toggle("completed");
         checkbox.innerHTML = checkbox.classList.contains("checked") ? "✔" : "";
+
+        // When the item is first checked, record how long it was highlighted
+        // (i.e., how long the topic was actively discussed).
+        if (checkbox.classList.contains("checked")) {
+            const start = row.dataset.highlightStart
+                ? parseInt(row.dataset.highlightStart, 10)
+                : NaN;
+            if (!Number.isNaN(start) && !row.dataset.talkDurationMs) {
+                const durationMs = Math.max(0, now - start);
+                row.dataset.talkDurationMs = String(durationMs);
+            }
+
+            // Once we’ve committed the duration, clear the highlight state.
+            delete row.dataset.highlightStart;
+        }
+
         // Once it's actually checked, clear any temporary highlight
         if (checkbox.classList.contains("checked")) {
             row.classList.remove("highlighted");
@@ -460,7 +478,15 @@ function makeDuringCard(text) {
     // Sneaky highlight: clicking the row (not the checkbox) toggles a soft highlight
     row.addEventListener("click", (e) => {
         if (e.target.closest(".check-box")) return; // ignore clicks on checkbox
-        row.classList.toggle("highlighted");
+        // If it’s already completed, ignore highlight clicks.
+        if (row.classList.contains("completed")) return;
+
+        // One-way: clicking sets highlight (start timing) but doesn’t toggle it off.
+        // Ending the highlight happens when the checkbox is clicked.
+        if (!row.classList.contains("highlighted")) {
+            row.classList.add("highlighted");
+            row.dataset.highlightStart = String(Date.now());
+        }
     });
 
     return row;
@@ -500,6 +526,10 @@ function insertDuringEditableRow(container) {
         // Mark items created during the live phase as "new"
         const newCard = makeDuringCard(val);
         newCard.dataset.newItem = "1";
+        // New topics/questions added mid-interview should start highlighted
+        // so their “time talking” begins as soon as they’re saved.
+        newCard.classList.add("highlighted");
+        newCard.dataset.highlightStart = String(Date.now());
         container.replaceChild(newCard, wrapper);
     });
 
@@ -538,6 +568,7 @@ function openSummaryScreen() {
             const text = row.querySelector(".during-text").textContent.trim();
             const isDone = row.classList.contains("completed");
             const isNew = row.dataset.newItem === "1";
+            const durationLabel = formatTalkDuration(row.dataset.talkDurationMs);
             const icon = isDone ? "✔" : "✖";
             const statusClass = isDone ? "status-pill complete" : "status-pill missed";
             const label = isDone ? "Talked about" : "Not talked about";
@@ -549,6 +580,7 @@ function openSummaryScreen() {
             const combined = `
                 <span class="summary-main-text">${text}</span>
                 ${newPill}
+                ${durationLabel}
                 <span class="${statusClass}">${icon} ${label}</span>
             `.trim();
 
@@ -564,6 +596,7 @@ function openSummaryScreen() {
             const text = row.querySelector(".during-text").textContent.trim();
             const isDone = row.classList.contains("completed");
             const isNew = row.dataset.newItem === "1";
+            const durationLabel = formatTalkDuration(row.dataset.talkDurationMs);
             const icon = isDone ? "✔" : "✖";
             const statusClass = isDone ? "status-pill complete" : "status-pill missed";
             const label = isDone ? "Asked" : "Not asked";
@@ -575,6 +608,7 @@ function openSummaryScreen() {
             const combined = `
                 <span class="summary-main-text">${text}</span>
                 ${newPill}
+                ${durationLabel}
                 <span class="${statusClass}">${icon} ${label}</span>
             `.trim();
 
@@ -587,6 +621,28 @@ function openSummaryScreen() {
 /* ============================================================
    SUMMARY HELPERS
 ============================================================ */
+function formatTalkDuration(msString) {
+    if (!msString) return "";
+    const ms = parseInt(msString, 10);
+    if (!Number.isFinite(ms) || ms <= 0) return "";
+
+    const totalSeconds = Math.round(ms / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+
+    let label = "";
+    if (minutes > 0) {
+        label = `${minutes}m`;
+        if (seconds > 0) {
+            label += ` ${seconds}s`;
+        }
+    } else {
+        label = `${seconds}s`;
+    }
+
+    return `<span class="duration-pill">${label}</span>`;
+}
+
 function makeSectionHeader(title) {
     const h = document.createElement("h3");
     h.textContent = title;
