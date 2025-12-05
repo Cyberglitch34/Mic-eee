@@ -871,10 +871,6 @@ function saveSummaryToPastMeetings(pdfUrl) {
         }
     }
 
-    // Summary screen sidebar (if present) — separate log entry
-    const pastListSummary = document.getElementById("meetingListSummary");
-    addPastMeetingEntry(pastListSummary, title, dateStr, timeStr, pdfUrl, meetingIdForHistory);
-
     // Results screen list
     const resultsList = document.getElementById("resultsList");
     addPastMeetingEntry(resultsList, title, dateStr, timeStr, pdfUrl, meetingIdForHistory);
