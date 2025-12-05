@@ -580,8 +580,8 @@ function openSummaryScreen() {
             const combined = `
                 <span class="summary-main-text">${text}</span>
                 ${newPill}
-                ${durationLabel}
                 <span class="${statusClass}">${icon} ${label}</span>
+                ${durationLabel}
             `.trim();
 
             list.appendChild(makeSummaryRow(combined));
@@ -608,8 +608,8 @@ function openSummaryScreen() {
             const combined = `
                 <span class="summary-main-text">${text}</span>
                 ${newPill}
-                ${durationLabel}
                 <span class="${statusClass}">${icon} ${label}</span>
+                ${durationLabel}
             `.trim();
 
             list.appendChild(makeSummaryRow(combined));
@@ -640,7 +640,7 @@ function formatTalkDuration(msString) {
         label = `${seconds}s`;
     }
 
-    return `<span class="duration-pill">${label}</span>`;
+    return `<span class="duration-pill">Time on topic: ${label}</span>`;
 }
 
 function makeSectionHeader(title) {
