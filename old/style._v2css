@@ -1,0 +1,694 @@
+/* ============================================================
+   GLOBAL
+============================================================ */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(
+        140% 140% at 0% 0%,
+        rgba(175,210,255,0.7),
+        rgba(230,240,255,0.6),
+        rgba(245,250,255,1)
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+.app-screen { width: 100%; min-height: 100vh; }
+.hidden { display: none !important; }
+
+/* Make any icon image clickable without changing appearance */
+.icon-btn-img {
+    cursor: pointer;
+    user-select: none;
+    transition: 0.15s ease;
+}
+
+.icon-btn-img:hover {
+    opacity: 0.85;
+    transform: scale(1.03);
+}
+
+
+/* ============================================================
+   SCREEN ONE — SIDEBAR + MAIN PANEL
+============================================================ */
+.home-container {
+    display: flex;
+    height: 100vh;
+    background: transparent;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 300px;
+    padding: 28px 24px;
+    background: radial-gradient(
+        160% 160% at -20% -20%,
+        rgba(175,210,255,0.9),
+        rgba(220,235,255,0.8),
+        rgba(245,250,255,0.95)
+    );
+    border-right: 1px solid #d8e2f3;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(12px);
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 26px;
+}
+
+/* New Meeting button replaced with image */
+.new-meeting-btn-img {
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.new-meeting-btn-img img {
+    width: 190px;
+    cursor: pointer;
+}
+
+/* Meeting list */
+#meetingList { margin-top: 22px; }
+
+.meeting-entry {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: #ffffffaa;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+.meeting-entry:hover { background: white; }
+
+/* Sidebar navigation icons */
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 4px;
+    cursor: pointer;
+}
+.sidebar-item:hover { opacity: 0.8; }
+
+/* Sidebar icon image */
+.sidebar-item img {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+
+/* Bottom icons */
+.sidebar-bottom {
+    margin-top: auto;
+    display: flex;
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.sidebar-bottom img {
+    width: 46px;
+    height: 46px;
+    cursor: pointer;
+}
+
+
+/* ============================================================
+   MAIN SCREEN — CENTER CARD
+============================================================ */
+.main-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.main-inner {
+    width: 65%;
+    max-width: 900px;
+    background: white;
+    padding: 60px 50px;
+    border-radius: 22px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.main-inner img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+
+/* Input bar */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    padding: 12px 18px;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+
+    width: 70%;
+    max-width: 650px;
+    margin: 30px auto;
+}
+
+/* Updated for TEXTAREA instead of input */
+.input-wrapper textarea {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    font-family: inherit;
+
+    resize: none;       /* prevent dragging */
+    height: auto;
+    min-height: 32px;   /* your original compact size */
+    max-height: 140px;  /* stops it from getting huge */
+
+    padding: 4px 0;
+    line-height: 1.4;
+    overflow: hidden;   /* <-- removes scrollbar completely */
+}
+
+.input-wrapper textarea:focus {
+    outline: none !important;
+}
+#prepInput {
+    height: 60px !important;      /* fixed height */
+    resize: none !important;      /* user can’t stretch it */
+    overflow: hidden !important;  /* hides scrollbars completely */
+    line-height: 1.4rem;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    white-space: pre-wrap;        /* keeps line breaks readable */
+}
+.send-btn {
+    background: #e5e1ff;
+    border: none;
+    width: 40px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.send-btn:hover {
+    transform: translateY(-2px);
+    background: #d2cdfc;
+}
+.meeting-entry {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.meeting-menu-btn {
+    cursor: pointer;
+    padding: 4px 8px;
+    font-size: 20px;
+    color: #444;
+}
+
+.meeting-menu {
+    position: absolute;
+    right: 10px;
+    top: 40px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    overflow: hidden;
+    z-index: 999;
+    width: 150px;
+}
+
+.meeting-menu.hidden {
+    display: none;
+}
+
+.menu-item {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.menu-item:hover {
+    background: #f2f2f5;
+}
+
+
+/* ============================================================
+   EDITOR SCREEN
+============================================================ */
+.editor-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding: 60px 80px;
+    gap: 60px;
+}
+
+/* LEFT PANEL */
+.left-panel {
+    width: 360px;
+    background: white;
+    border-radius: 30px;
+    padding: 55px 35px 40px 35px; /* MORE TOP PADDING */
+    box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 26px;
+}
+.left-message {
+    margin-top: 22px;  /* pushes it down */
+    text-align: center;
+
+    font-size: 1.15rem;   /* SMALLER FONT */
+    font-weight: 500;
+    line-height: 1.35;
+    color: #000;
+}
+
+/* Home button (image version) */
+.editor-home-btn img {
+    width: 60px;   /* smaller icon */
+    height: 60px;
+}
+
+.editor-home-btn {
+    position: absolute;
+    top: 30px;      
+    left: 25px;
+
+    background: #ffffff;
+    border: 2px solid #d0d0ff;
+    border-radius:50%;
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.20);
+    cursor: pointer;
+
+    transition: transform 0.15s ease;
+}
+
+.editor-home-btn:hover {
+    transform: scale(1.07);
+}
+
+.editor-footer-note {
+    margin-top: auto;      /* pushes it to bottom */
+    width: 100%;
+    text-align: center;
+
+    font-size: 0.8rem;     /* smaller text */
+    white-space: nowrap;   /* FORCE ONE LINE */
+}
+
+/* Start meeting button (image) */
+.start-meeting-img {
+    width: 180px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+
+/* RIGHT PANEL */
+.right-panel {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.editor-container {
+    width: 100%;
+    max-width: 1100px;
+    min-height: 650px;
+    background: #dee7ff;
+    border-radius: 24px;
+    padding: 0;
+    margin: auto;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* Tabs */
+.tab-header {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    background: #cdd6ff;
+    padding: 35px 40px;
+    border-radius: 24px 24px 0 0;
+}
+
+.tab-btn {
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 16px 40px;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.tab-btn.active {
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Cards */
+.tab-panel {
+    padding: 30px 40px 100px 40px;
+}
+
+.task-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Edit/Delete images */
+.task-icons img {
+    width: 26px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.task-icons img:hover {
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+/* Edit mode input + buttons */
+.action-panel {
+    margin-top: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.edit-input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #c7c7f7;
+}
+
+/* FLOATING + BUTTON */
+.add-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: black;
+    color: white;
+    font-size: 2.4rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+}
+
+.add-btn:hover {
+    transform: scale(1.08);
+}
+
+/* Delete confirmation */
+.delete-panel {
+    margin-top: 10px;
+    background: #fff4f4;
+    border: 1px solid #f05c5c;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-left: auto;
+    width: fit-content;
+}
+
+.delete-panel p { margin: 0 0 6px 0; }
+
+.confirm-delete {
+    background: #ffb4b4;
+}
+
+.cancel-delete {
+    background: #eee;
+}
+.add-btn {
+    bottom:145px;   /* raises it upward */
+    right: 215px;    /* more inset clean look */
+}
+
+/* DURING MEETING SCREEN */
+.during-wrapper {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.during-panel {
+    margin-top: 20px;
+}
+
+.during-card {
+    background: #f7f7ff;
+    padding: 26px 30px;
+    border-radius: 18px;
+    margin-bottom: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.35rem;        
+    font-weight: 600;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: background 0.25s ease;
+}
+
+.during-card.completed {
+    background: #dff0ff;
+    opacity: 0.85;
+}
+
+/* CROSS OUT ONLY THE TEXT — thicker & darker */
+.during-card.completed .during-text {
+    text-decoration: line-through;
+    text-decoration-thickness: 3px;  /* thicker line */
+    text-decoration-color: #333;     
+    opacity: 0.6;                   
+}
+
+/* CHECKBOX */
+.check-box {
+    width: 38px;
+    height: 38px;
+    border: 3px solid #222;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    background: white;
+}
+
+.check-box.checked {
+    background: #00c853;  /* ⭐ GREEN CHECKBOX BACKGROUND */
+    color: white;         /* white checkmark */
+    border-color: #00a845;
+}
+
+/* REVIEW BUTTON */
+.review-btn {
+    margin: 40px auto;
+    display: block;
+    padding: 14px 28px;
+    background: #d8ecff;
+    border-radius: 16px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* ===============================
+   SUMMARY CARDS 
+================================ */
+
+.action-list {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+}
+
+.action-item {
+    background: #dde3ff;
+    padding: 18px 24px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    font-size: 1.05rem;
+    font-weight: 500;
+}
+
+.action-text {
+    flex: 1;
+    color: #333;
+    text-align: left;
+}
+
+.action-icons {
+    display: flex;
+    gap: 14px;
+}
+
+.action-icons span {
+    cursor: pointer;
+    font-size: 1.3rem;
+    opacity: 0.85;
+    transition: 0.2s;
+}
+
+.action-icons span:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+/* Compact summary layout */
+.action-item {
+    padding: 14px 18px;
+    font-size: 1rem;
+}
+
+/* Reduce spacing around sections */
+#actionList h3 {
+    margin-top: 18px !important;
+    margin-bottom: 8px !important;
+}
+
+/* Keep whole summary narrow and centered */
+#summaryCard {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* Hide edit/delete ONLY when exporting PDF */
+.pdf-mode .action-icons {
+    display: none !important;
+}
+.during-add-btn {
+    position: fixed;
+    bottom: 35px;
+    right: 35px;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #000;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.4rem;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.25);
+    z-index: 999;
+}
+
+.during-add-btn:hover {
+    transform: scale(1.10);
+}
+
+/* During Meeting Editable Row Layout */
+.during-edit-row {
+    background: #ffffff;
+    padding: 16px 20px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* <--- pushes buttons to right */
+    gap: 14px;
+}
+
+.during-edit-input {
+    flex: 1;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #cdd2f8;
+    font-size: 1rem;
+}
+
+.during-edit-actions {
+    display: flex;
+    gap: 10px;   /* spacing between Save and Cancel */
+}
+
+.during-save-btn,
+.during-cancel-btn {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: white;
+    cursor: pointer;
+    transition: 0.15s ease;
+}
+
+.during-save-btn:hover,
+.during-cancel-btn:hover {
+    background: #f0f0f0;
+}
+
+/* Summary page scroll container */
+.summary-scroll-wrapper {
+    max-height: 420px;          /* FIXED HEIGHT - prevents pushing UI */
+    overflow-y: auto;           /* scrolling allowed */
+    padding-right: 10px;        /* space for scrollbar */
+    margin-top: 20px;
+}
+
+
+.summary-scroll-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+.summary-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #c7d4ff;
+    border-radius: 8px;
+}
+
+/* Shrink entire summary ONLY for PDF capture */
+.pdf-shrink #summaryCard {
+    transform: scale(0.75);
+    transform-origin: top center;
+    width: 133%;              /* compensate width due to shrink */
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/icons/Icon.png">
+
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Mic-eee</title>
+</head>
+
+<body>
+
+<!-- ░░░ SCREEN 1 — PRE-MEETING INPUT ░░░ -->
+<div id="screen-prep" class="app-screen d-flex justify-content-center align-items-start">
+
+    <div class="text-center" style="width:100%; max-width:900px; margin-top:40px;">
+
+        <img src="assets/images/mic-eee_logo.png" style="width:120px; margin-bottom:20px;">
+
+        <h2 class="fw-bold mb-2">Let’s interview prep !</h2>
+
+        <p class="text-muted mb-4">List any topics, goals, or questions you want tracked.</p>
+
+        <div class="position-relative mx-auto" style="width:100%; max-width:1100px;">
+
+            <textarea 
+                id="prepInput"
+                class="form-control p-4"
+                placeholder="Write your message ..."
+                style="border-radius:18px; height:150px; resize:none; width:100%;"
+            ></textarea>
+
+            <button id="goEditor"
+                class="btn position-absolute"
+                style="bottom:16px; right:16px; font-size:1.4rem;"
+            >➤</button>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ░░░ SCREEN 2 — EDITOR ░░░ -->
+<div id="screen-editor" class="app-screen hidden">
+
+    <div class="editor-wrapper">
+        
+        <!-- LEFT SIDE MIC-EEE PANEL -->
+        <div class="left-panel">
+            <img src="assets/images/mic-eee_logo.png" class="left-mic">
+            <p class="left-message">Any edits you’d<br>like to make ?</p>
+        </div>
+
+        <!-- RIGHT SIDE MAIN EDITOR -->
+        <div class="right-panel editor-container">
+
+            <!-- Tabs -->
+            <div class="tab-header">
+                <div id="tabTasks" class="active tab-btn">TASKS</div>
+                <div id="tabQuestions" class="tab-btn">QUESTIONS</div>
+            </div>
+
+            <!-- Lists -->
+            <div id="taskList" class="tab-panel"></div>
+            <div id="questionList" class="tab-panel hidden"></div>
+
+            <!-- Add Button -->
+            <button id="addBtn" class="add-btn">+</button>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- JS -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
