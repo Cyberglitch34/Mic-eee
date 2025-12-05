@@ -598,7 +598,6 @@ function openSummaryScreen() {
             const text = row.querySelector(".during-text").textContent.trim();
             const isDone = row.classList.contains("completed");
             const isNew = row.dataset.newItem === "1";
-            const durationLabel = formatTalkDuration(row.dataset.talkDurationMs);
             const icon = isDone ? "✔" : "✖";
             const statusClass = isDone ? "status-pill complete" : "status-pill missed";
             const label = isDone ? "Asked" : "Not asked";
@@ -612,7 +611,6 @@ function openSummaryScreen() {
                 <span class="action-meta">
                     ${newPill}
                     <span class="${statusClass}">${icon} ${label}</span>
-                    ${durationLabel}
                 </span>
             `.trim();
 
