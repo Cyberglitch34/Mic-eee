@@ -894,7 +894,7 @@ body.theme-dark .during-card.highlighted {
 
 .action-item {
     background: #dde3ff;
-    padding: 10px 14px;
+    padding: 10px 20px 10px 14px; /* extra right padding for pills */
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -992,11 +992,12 @@ body.theme-dark .during-card.highlighted {
     font-weight: 600;
     background: #fff8e1;
     color: #5d4037;
+    white-space: nowrap;   /* keep label on one line */
 }
 
 /* Container for status + time pills on the right side of summary rows */
 .action-meta {
-    margin-left: 24px;
+    margin-left: auto;     /* push pills to the right side */
     display: inline-flex;
     align-items: center;
     gap: 8px;
