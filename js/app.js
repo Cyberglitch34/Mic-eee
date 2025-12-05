@@ -579,9 +579,11 @@ function openSummaryScreen() {
 
             const combined = `
                 <span class="summary-main-text">${text}</span>
-                ${newPill}
-                <span class="${statusClass}">${icon} ${label}</span>
-                ${durationLabel}
+                <span class="action-meta">
+                    ${newPill}
+                    <span class="${statusClass}">${icon} ${label}</span>
+                    ${durationLabel}
+                </span>
             `.trim();
 
             list.appendChild(makeSummaryRow(combined));
@@ -607,9 +609,11 @@ function openSummaryScreen() {
 
             const combined = `
                 <span class="summary-main-text">${text}</span>
-                ${newPill}
-                <span class="${statusClass}">${icon} ${label}</span>
-                ${durationLabel}
+                <span class="action-meta">
+                    ${newPill}
+                    <span class="${statusClass}">${icon} ${label}</span>
+                    ${durationLabel}
+                </span>
             `.trim();
 
             list.appendChild(makeSummaryRow(combined));

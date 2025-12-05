@@ -911,9 +911,13 @@ body.theme-dark .during-card.highlighted {
 }
 
 .action-text {
-    flex: 1;
+    flex: 0 0 55%;          /* reserve left portion for text */
     color: #333;
     text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
 }
 
 .action-icons {
@@ -983,12 +987,19 @@ body.theme-dark .during-card.highlighted {
     display: inline-flex;
     align-items: center;
     padding: 2px 8px;
-    margin-left: 8px;
     border-radius: 999px;
     font-size: 0.8rem;
     font-weight: 600;
     background: #fff8e1;
     color: #5d4037;
+}
+
+/* Container for status + time pills on the right side of summary rows */
+.action-meta {
+    margin-left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 }
 /* Compact summary layout */
 .action-item {
