@@ -1038,6 +1038,15 @@ body.theme-dark .during-card.highlighted {
     margin: 0 auto;
 }
 
+/* Place summary disclaimer at very bottom of the page */
+#screen-summary .footer-text {
+    position: fixed;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
 /* Hide interactive controls when exporting PDF */
 .pdf-shrink .action-icons,
 .pdf-shrink #downloadSummary {
