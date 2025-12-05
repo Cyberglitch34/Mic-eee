@@ -3,6 +3,7 @@
 ============================================================ */
 let activeMeeting = null;
 let currentMeeting = null;
+let nextMeetingId = 1;
 
 
 /* ============================================================
@@ -93,6 +94,7 @@ function addMeetingEntry(text) {
     const list = document.getElementById("meetingList");
 
     const meetingObj = {
+        id: nextMeetingId++,
         title: text,
         content: text === "New Meeting" ? "" : text,
         entry: null
@@ -100,6 +102,7 @@ function addMeetingEntry(text) {
 
     const entry = document.createElement("div");
     entry.classList.add("meeting-entry");
+    entry.dataset.meetingId = String(meetingObj.id);
     entry.innerHTML = `
         <span class="meeting-title">${text.length > 24 ? text.substring(0, 24) + "…" : text}</span>
         <div class="meeting-menu-btn">⋮</div>
@@ -178,6 +181,7 @@ function addMeetingEntry(text) {
             if (newTitle) {
                 titleElement.textContent = newTitle.length > 24 ? newTitle.substring(0, 24) + "…" : newTitle;
                 meetingObj.title = newTitle;  // Update the meeting object
+                propagateMeetingTitle(meetingObj.id, newTitle);
             }
         }
     });
@@ -208,6 +212,30 @@ function addMeetingEntry(text) {
 
     list.prepend(entry);
     return meetingObj;
+}
+
+// Keep meeting name consistent everywhere that meeting ID appears
+function propagateMeetingTitle(meetingId, newTitle) {
+    if (!meetingId || !newTitle) return;
+    const idStr = String(meetingId);
+    const fullTitle = newTitle.trim();
+    const shortTitle = fullTitle.length > 24 ? fullTitle.substring(0, 24) + "…" : fullTitle;
+
+    document.querySelectorAll(`.meeting-entry[data-meeting-id="${idStr}"]`).forEach(entry => {
+        const titleSpan = entry.querySelector(".meeting-title");
+        const dateLabel = entry.dataset.dateLabel;
+
+        if (titleSpan) {
+            // Sidebar chips that use a dedicated span
+            titleSpan.textContent = shortTitle;
+        } else if (dateLabel) {
+            // Past / Results entries that display "Title — Date Time"
+            entry.textContent = `${fullTitle} — ${dateLabel}`;
+        } else {
+            // Fallback: just set plain text
+            entry.textContent = fullTitle;
+        }
+    });
 }
 
 
@@ -810,6 +838,7 @@ function saveSummaryToPastMeetings(pdfUrl) {
 
     // Home sidebar past interviews list — move the original meeting chip down
     const pastListHome = document.getElementById("pastMeetingsList");
+    let meetingIdForHistory = null;
     if (pastListHome) {
         const originalEntry =
             (currentMeeting && currentMeeting.entry) ||
@@ -826,6 +855,10 @@ function saveSummaryToPastMeetings(pdfUrl) {
                 originalEntry.textContent = label;
             }
 
+            if (originalEntry.dataset.meetingId) {
+                meetingIdForHistory = originalEntry.dataset.meetingId;
+            }
+
             if (originalEntry.parentElement) {
                 originalEntry.parentElement.removeChild(originalEntry);
             }
@@ -834,25 +867,31 @@ function saveSummaryToPastMeetings(pdfUrl) {
             pastListHome.prepend(originalEntry);
         } else {
             // Fallback: if we somehow don't have the original chip, create one
-            addPastMeetingEntry(pastListHome, title, dateStr, timeStr, pdfUrl);
+            addPastMeetingEntry(pastListHome, title, dateStr, timeStr, pdfUrl, meetingIdForHistory);
         }
     }
 
     // Summary screen sidebar (if present) — separate log entry
     const pastListSummary = document.getElementById("meetingListSummary");
-    addPastMeetingEntry(pastListSummary, title, dateStr, timeStr, pdfUrl);
+    addPastMeetingEntry(pastListSummary, title, dateStr, timeStr, pdfUrl, meetingIdForHistory);
 
     // Results screen list
     const resultsList = document.getElementById("resultsList");
-    addPastMeetingEntry(resultsList, title, dateStr, timeStr, pdfUrl);
+    addPastMeetingEntry(resultsList, title, dateStr, timeStr, pdfUrl, meetingIdForHistory);
 }
 
-function addPastMeetingEntry(listElement, title, dateStr, timeStr, pdfUrl) {
+function addPastMeetingEntry(listElement, title, dateStr, timeStr, pdfUrl, meetingId) {
     if (!listElement) return;
 
     const entry = document.createElement("div");
     entry.classList.add("meeting-entry");
-    entry.textContent = `${title} — ${dateStr} ${timeStr}`;
+    const dateLabel = `${dateStr} ${timeStr}`;
+    entry.dataset.dateLabel = dateLabel;
+    entry.dataset.title = title;
+    if (meetingId) {
+        entry.dataset.meetingId = String(meetingId);
+    }
+    entry.textContent = `${title} — ${dateLabel}`;
 
     if (pdfUrl) {
         entry.style.cursor = "pointer";

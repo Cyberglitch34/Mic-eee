@@ -1038,12 +1038,14 @@ body.theme-dark .during-card.highlighted {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    max-height: 80vh;        /* keep within viewport */
+    overflow: hidden;        /* summary list will scroll inside */
 }
 
 /* Summary disclaimer: centered at bottom of the summary card */
 #summaryCard .footer-text {
-    margin-top: 18px;
-    margin-bottom: 4px;
+    margin-top: 32px;
+    margin-bottom: 8px;
     font-size: 0.8rem;
     text-align: center;
     align-self: center;
@@ -1134,9 +1136,10 @@ body.theme-dark .during-card.highlighted {
 
 /* Summary page scroll container */
 .summary-scroll-wrapper {
-    max-height: 420px;          /* FIXED HEIGHT - prevents pushing UI */
-    overflow-y: auto;           /* scrolling allowed */
-    padding-right: 10px;        /* space for scrollbar */
+    flex: 1 1 auto;        /* grow within summary card */
+    min-height: 0;         /* allow internal scrolling */
+    overflow-y: auto;      /* scrolling allowed */
+    padding-right: 10px;   /* space for scrollbar */
     margin-top: 20px;
 }
 
@@ -1149,11 +1152,12 @@ body.theme-dark .during-card.highlighted {
     border-radius: 8px;
 }
 
-/* Shrink entire summary ONLY for PDF capture */
+/* PDF capture: show full summary at natural size */
 .pdf-shrink #summaryCard {
-    transform: scale(0.7);
-    transform-origin: top center;
-    width: 143%;              /* compensate width due to shrink */
+    max-height: none;
+    overflow: visible;
+    transform: none;
+    width: 100%;
 }
 
 /* For PDF capture, show full summary instead of scroll */
