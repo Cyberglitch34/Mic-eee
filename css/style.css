@@ -1042,9 +1042,10 @@ body.theme-dark .during-card.highlighted {
 #screen-summary .footer-text {
     position: fixed;
     bottom: 12px;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
+    white-space: nowrap;
 }
 
 /* Hide interactive controls when exporting PDF */
