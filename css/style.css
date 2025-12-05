@@ -1036,16 +1036,17 @@ body.theme-dark .during-card.highlighted {
 #summaryCard {
     max-width: 640px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Place summary disclaimer at very bottom of the page */
-#screen-summary .footer-text {
-    position: fixed;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%);
+/* Summary disclaimer: centered at bottom of the summary card */
+#summaryCard .footer-text {
+    margin-top: 18px;
+    margin-bottom: 4px;
+    font-size: 0.8rem;
     text-align: center;
-    white-space: nowrap;
+    align-self: center;
 }
 
 /* Hide interactive controls when exporting PDF */
