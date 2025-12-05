@@ -911,7 +911,7 @@ body.theme-dark .during-card.highlighted {
 }
 
 .action-text {
-    flex: 0 0 55%;          /* reserve left portion for text */
+    flex: 1 1 auto;         /* let text grow horizontally */
     color: #333;
     text-align: left;
     display: flex;
@@ -996,10 +996,11 @@ body.theme-dark .during-card.highlighted {
 
 /* Container for status + time pills on the right side of summary rows */
 .action-meta {
-    margin-left: 16px;
+    margin-left: 24px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    flex-shrink: 0;         /* keep pills together on the right */
 }
 /* Compact summary layout */
 .action-item {
