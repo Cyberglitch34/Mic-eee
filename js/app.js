@@ -1,23 +1,17 @@
-/* ============================================================
-   GLOBAL STATE
-============================================================ */
+/* Global state */
 let activeMeeting = null;
 let currentMeeting = null;
 let nextMeetingId = 1;
 
 
-/* ============================================================
-   TEXTAREA AUTO-SCROLL FIX
-============================================================ */
+/* Textarea auto-scroll fix */
 const prepInput = document.getElementById("prepInput");
 prepInput.addEventListener("input", () => {
     prepInput.scrollTop = 0;
 });
 
 
-/* ============================================================
-   GO TO EDITOR
-============================================================ */
+/* Go to editor */
 document.getElementById("goEditor").addEventListener("click", () => {
     const raw = prepInput.value.trim();
     if (!raw) return;
@@ -33,9 +27,7 @@ document.getElementById("goEditor").addEventListener("click", () => {
 });
 
 
-/* ============================================================
-   NEW MEETING BUTTONS
-============================================================ */
+/* New meeting buttons */
 document.getElementById("newMeetingBtn").addEventListener("click", () => {
     activeMeeting = addMeetingEntry("New Meeting");
     prepInput.value = "";
@@ -50,9 +42,7 @@ document.getElementById("newMeetingBtn2").addEventListener("click", () => {
 });
 
 
-/* ============================================================
-   PAST & UPCOMING MEETINGS
-============================================================ */
+/* Past and upcoming meetings */
 
 // Get the sidebar buttons and lists
 const pastToggle = document.getElementById("pastToggle");
@@ -87,9 +77,7 @@ if (upcomingToggle && upcomingList) {
     });
 }
 
-/* ============================================================
-   ADD MEETING ENTRY (WITH THREE-DOT MENU)
-============================================================ */
+/* Add meeting entry with three-dot menu */
 function addMeetingEntry(text) {
     const list = document.getElementById("meetingList");
 
@@ -240,9 +228,7 @@ function propagateMeetingTitle(meetingId, newTitle) {
 
 
 
-/* ============================================================
-   OPEN EDITOR
-============================================================ */
+/* Open editor */
 function openEditor(rawText, meetingObj) {
 
     currentMeeting = meetingObj;
@@ -264,9 +250,7 @@ function openEditor(rawText, meetingObj) {
 }
 
 
-/* ============================================================
-   HOME FROM EDITOR
-============================================================ */
+/* Home from editor */
 document.getElementById("homeBtn").addEventListener("click", () => {
     // When leaving the editor without starting the meeting,
     // treat this as an upcoming (prepped) meeting so it can be
@@ -299,9 +283,7 @@ document.getElementById("homeBtn").addEventListener("click", () => {
 });
 
 
-/* ============================================================
-   CREATE TASK/QUESTION CARD
-============================================================ */
+/* Create task/question card */
 function createCard(text, panelID) {
     const container = document.getElementById(panelID);
 
@@ -336,9 +318,7 @@ function createCard(text, panelID) {
 }
 
 
-/* ============================================================
-   CARD CONTROLS
-============================================================ */
+/* Card controls */
 function attachCardControls(card) {
     const editIcon = card.querySelector(".edit-icon");
     const deleteIcon = card.querySelector(".delete-icon");
@@ -375,9 +355,7 @@ function attachCardControls(card) {
 }
 
 
-/* ============================================================
-   ADD NEW CARD IN EDITOR (+ BUTTON)
-============================================================ */
+/* Add new card in editor (+ button) */
 document.getElementById("addBtn").addEventListener("click", () => {
     const isTasks = document.getElementById("tabTasks").classList.contains("active");
     const panel = isTasks ? "taskList" : "questionList";
@@ -420,9 +398,7 @@ function switchTab(tab) {
 }
 
 
-/* ============================================================
-   START MEETING
-============================================================ */
+/* Start meeting */
 document.getElementById("startMeetingBtn").addEventListener("click", openDuringMeeting);
 
 function openDuringMeeting() {
@@ -439,9 +415,7 @@ function openDuringMeeting() {
 }
 
 
-/* ============================================================
-   SWITCH TO QUESTIONS DURING MEETING
-============================================================ */
+/* Switch to questions during meeting */
 document.getElementById("switchToQuestions").addEventListener("click", openQuestionMode);
 
 function openQuestionMode() {
@@ -458,9 +432,7 @@ function openQuestionMode() {
 }
 
 
-/* ============================================================
-   DURING-MEETING ROW BUILDER
-============================================================ */
+/* During-meeting row builder */
 function addDuringRow(text, container) {
     container.appendChild(makeDuringCard(text));
 }
@@ -521,9 +493,7 @@ function makeDuringCard(text) {
 }
 
 
-/* ============================================================
-   ADD DURING-MEETING NEW ITEM
-============================================================ */
+/* Add during-meeting new item */
 document.getElementById("duringAddTask").addEventListener("click", () => {
     insertDuringEditableRow(document.getElementById("duringList"));
 });
@@ -565,9 +535,7 @@ function insertDuringEditableRow(container) {
 }
 
 
-/* ============================================================
-   SUMMARY PAGE BUILDER
-============================================================ */
+/* Summary page builder */
 document.getElementById("goToSummary").addEventListener("click", openSummaryScreen);
 
 function openSummaryScreen() {
@@ -648,9 +616,7 @@ function openSummaryScreen() {
 }
 
 
-/* ============================================================
-   SUMMARY HELPERS
-============================================================ */
+/* Summary helpers */
 function formatTalkDuration(msString) {
     if (!msString) return "";
     const ms = parseInt(msString, 10);
@@ -745,9 +711,7 @@ function makeSummaryRow(text, editable = false) {
 }
 
 
-/* ============================================================
-   PDF DOWNLOAD
-============================================================ */
+/* PDF download */
 let pendingPdfUrl = null; // holds latest summary PDF URL while user decides saving
 
 document.getElementById("downloadSummary").addEventListener("click", async () => {
@@ -901,9 +865,7 @@ function addPastMeetingEntry(listElement, title, dateStr, timeStr, pdfUrl, meeti
 }
 
 
-/* ============================================================
-   SAVE-TO-PAST MODAL CONTROLS
-============================================================ */
+/* Save-to-past modal controls */
 function openSavePastModal() {
     const overlay = document.getElementById("savePastModal");
     if (!overlay) return;
@@ -946,9 +908,7 @@ if (resultsBackHomeBtn) {
     });
 }
 
-/* ============================================================
-   SETTINGS MODAL & THEME / LAYOUT TOGGLES
-============================================================ */
+/* Settings modal and theme/layout toggles */
 const settingsButtons = document.querySelectorAll(".settings-btn");
 const settingsPanel = document.getElementById("settingsPanel");
 const layoutComfortableBtn = document.getElementById("layoutComfortable");

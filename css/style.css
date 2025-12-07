@@ -1,6 +1,4 @@
-/* ============================================================
-   GLOBAL
-============================================================ */
+/* Global styles */
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
@@ -249,9 +247,7 @@ body.theme-dark .menu-item:hover {
 }
 
 
-/* ============================================================
-   SCREEN ONE — SIDEBAR + MAIN PANEL
-============================================================ */
+/* Screen 1: sidebar and main panel */
 .home-container {
     display: flex;
     min-height: 100vh;
@@ -371,9 +367,7 @@ body.theme-dark .menu-item:hover {
 }
 
 
-/* ============================================================
-   MAIN SCREEN — CENTER CARD
-============================================================ */
+/* Main screen center card */
 .main-panel {
     flex: 1;
     display: flex;
@@ -499,9 +493,7 @@ body.theme-dark .menu-item:hover {
 }
 
 
-/* ============================================================
-   EDITOR SCREEN
-============================================================ */
+/* Editor screen */
 .editor-wrapper {
     display: flex;
     width: 100%;
@@ -1167,12 +1159,7 @@ body.theme-dark .during-card.highlighted {
 }
 
 
-/* ============================================================
-   RESPONSIVE TWEAKS
-   - Large:   default styles (desktops / full width)
-   - Medium:  <= 1400px (split-screen with Zoom, small laptops)
-   - Narrow:  <= 900px  (tablets / phones)
-============================================================ */
+/* Responsive tweaks for large, medium, and narrow screens */
 @media (max-width: 1400px) {
     .editor-wrapper {
         padding: 24px 24px;

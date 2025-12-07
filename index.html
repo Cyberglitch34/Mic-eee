@@ -14,10 +14,10 @@
 
 <body>
 
-<!-- ░░░ SCREEN 1 — HOME PAGE ░░░ -->
+<!-- Screen 1: Home page -->
 <div id="screen-home" class="home-container">
 
-    <!-- LEFT SIDEBAR -->
+    <!-- Left sidebar -->
     <aside class="sidebar">
         <h2 class="sidebar-title">MIC-EEE’S INTERVIEWS</h2>
 
@@ -28,14 +28,14 @@
         <div id="meetingList"></div>
 
         <div class="static-section">
-            <!-- Past meetings toggle -->
+            <!-- Past meetings section -->
             <div class="sidebar-item" id="pastToggle">
                 <img src="assets/icons/hourglass.png" style="width:40px;">
                 Past Interviews
             </div>
             <div id="pastMeetingsList" class="sub-meeting-list hidden"></div>
 
-            <!-- Upcoming meetings toggle -->
+            <!-- Upcoming meetings section -->
             <div class="sidebar-item" id="upcomingToggle">
                 <img src="assets/icons/calendar.png" style="width:40px;">
                 Upcoming Interviews
@@ -49,7 +49,7 @@
         </div>
     </aside>
 
-    <!-- RIGHT PANEL -->
+    <!-- Right panel -->
     <main class="main-panel">
         <div class="main-inner">
 
@@ -69,7 +69,7 @@
     </main>
 </div>
 
-<!-- Soft modal asking to save summary to Past Interviews -->
+<!-- Save summary modal -->
 <div id="savePastModal" class="modal-overlay hidden">
     <div class="modal-card">
         <p class="modal-text">Save a copy to your Past Interviews?</p>
@@ -81,7 +81,7 @@
 </div>
 
 
-<!-- ░░░ SCREEN 2 — EDITOR ░░░ -->
+<!-- Screen 2: Editor -->
 <div id="screen-editor" class="app-screen hidden">
 
     <div class="editor-wrapper">
@@ -119,7 +119,7 @@
 </div>
 
 
-<!-- ░░░ SCREEN 3 — DURING MEETING (TASK MODE) ░░░ -->
+<!-- Screen 3: During meeting (task mode) -->
 <div id="screen-during" class="app-screen hidden">
     <div class="during-wrapper">
         <div class="during-container">
@@ -141,7 +141,7 @@
 </div>
 
 
-<!-- ░░░ SCREEN 4 — DURING MEETING (QUESTION MODE) ░░░ -->
+<!-- Screen 4: During meeting (question mode) -->
 <div id="screen-during-questions" class="app-screen hidden">
     <div class="during-wrapper">
         <div class="during-container">
@@ -163,7 +163,7 @@
 </div>
 
 
-<!-- ░░░ SCREEN 5 — POST MEETING SUMMARY ░░░ -->
+<!-- Screen 5: Post-meeting summary -->
 <div id="screen-summary" class="home-container hidden">
 
     <aside class="sidebar">
@@ -212,7 +212,7 @@
     </main>
 </div>
 
-<!-- ░░░ SCREEN 6 — RESULTS / PAST MEETING PDFs ░░░ -->
+<!-- Screen 6: Results / past meeting PDFs -->
 <div id="screen-results" class="home-container hidden">
 
     <aside class="sidebar">
@@ -222,7 +222,7 @@
             <img src="assets/icons/new.png" id="resultsNewMeeting" class="icon-btn-img">
         </div>
 
-        <!-- Reuse same Past / Upcoming labels for consistency -->
+        <!-- Past / upcoming labels -->
         <div class="static-section">
             <div class="sidebar-item" id="resultsBackHome">
                 <img src="assets/icons/home.png" style="width:40px;">
@@ -250,7 +250,7 @@
     </main>
 </div>
 
-<!-- Inline settings panel (global, anchored near sidebar) -->
+<!-- Settings panel -->
 <div id="settingsPanel" class="settings-panel hidden">
     <p class="settings-title">Settings</p>
 
