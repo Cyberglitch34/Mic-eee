@@ -13,56 +13,6 @@ body {
     font-size: 15px; /* slightly more compact overall */
 }
 
-/* For Electron Overlay:
-   The following block was used to support a frameless, draggable
-   transparent overlay window in an Electron shell. It is commented
-   out so that the regular Chrome / browser version stays simpler.
-   If you want to re-enable the Electron overlay behavior, you can
-   uncomment this entire section. */
-/*
-body.overlay-app {
-    background: transparent !important;
-}
-
-body.overlay-app .home-container,
-body.overlay-app .app-screen {
-    -webkit-app-region: drag;
-}
-
-body.overlay-app button,
-body.overlay-app textarea,
-body.overlay-app input,
-body.overlay-app img,
-body.overlay-app .input-wrapper,
-body.overlay-app .settings-panel,
-body.overlay-app .tab-header,
-body.overlay-app .tab-panel,
-body.overlay-app .during-panel,
-body.overlay-app .meeting-entry,
-body.overlay-app .task-card,
-body.overlay-app .during-card,
-body.overlay-app .summary-scroll-wrapper,
-body.overlay-app .action-item,
-body.overlay-app .action-icons {
-    -webkit-app-region: no-drag;
-}
-
-body.overlay-app.layout-compact.theme-transparent #screen-during .during-wrapper,
-body.overlay-app.layout-compact.theme-transparent #screen-during-questions .during-wrapper {
-    background: transparent;
-    padding: 24px 12px;
-}
-
-body.overlay-app.layout-compact.theme-transparent .during-container {
-    max-width: 340px;
-}
-
-body.overlay-app.layout-compact.theme-transparent #summaryCard {
-    max-width: 320px;
-    padding: 24px 18px;
-}
-*/
-
 .app-screen { width: 100%; min-height: 100vh; }
 .hidden { display: none !important; }
 
