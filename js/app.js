@@ -914,6 +914,7 @@ const settingsPanel = document.getElementById("settingsPanel");
 const layoutComfortableBtn = document.getElementById("layoutComfortable");
 const layoutCompactBtn = document.getElementById("layoutCompact");
 const darkModeToggle = document.getElementById("darkModeToggle");
+const transparentModeToggle = document.getElementById("transparentModeToggle");
 
 if (settingsPanel && settingsButtons.length > 0) {
     settingsButtons.forEach(btn => {
@@ -941,6 +942,16 @@ if (darkModeToggle) {
             document.body.classList.add("theme-dark");
         } else {
             document.body.classList.remove("theme-dark");
+        }
+    });
+}
+
+if (transparentModeToggle) {
+    transparentModeToggle.addEventListener("change", () => {
+        if (transparentModeToggle.checked) {
+            document.body.classList.add("theme-transparent");
+        } else {
+            document.body.classList.remove("theme-transparent");
         }
     });
 }
