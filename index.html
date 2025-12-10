@@ -283,5 +283,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>
+
+<!-- For Electron Overlay:
+     The block below auto-enables overlay-specific styles when
+     the page is loaded with ?overlay=1. Commented out so that
+     the regular Chrome app version stays simpler. -->
+<!--
+<script>
+    (function () {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("overlay") === "1") {
+                document.body.classList.add("overlay-app");
+                // Default overlay to transparent glass look
+                document.body.classList.add("theme-transparent");
+            }
+        } catch (e) {
+            // no-op if URLSearchParams isn't available
+        }
+    })();
+</script>
+-->
 </body>
 </html>
