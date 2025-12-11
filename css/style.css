@@ -118,48 +118,6 @@ body {
     text-align: center;
 }
 
-.layout-compact .editor-container,
-.layout-compact .during-container,
-.layout-compact #summaryCard {
-    max-width: 820px;
-    padding-top: 32px;
-}
-
-/* Compact home card + chrome: tuned for split-screen.
-   Sidebar is narrower; card is smaller and centered so the
-   whole layout fits cleanly in a skinny window. */
-.layout-compact .home-container {
-    align-items: stretch;
-}
-
-.layout-compact .sidebar {
-    width: 180px;
-    padding: 16px 12px;
-}
-
-.layout-compact .main-panel {
-    padding: 18px 6px;
-}
-
-/* Main home card */
-.layout-compact .main-inner {
-    width: 100%;
-    max-width: 280px;
-    padding: 24px 18px;
-    margin: 0 auto;
-}
-
-.layout-compact .input-wrapper {
-    width: 100%;
-    max-width: 260px;
-    margin: 24px auto;
-}
-
-.layout-compact body,
-body.layout-compact {
-    font-size: 14px;
-}
-
 /* Simple dark mode */
 body.theme-dark {
     background: radial-gradient(
@@ -275,101 +233,6 @@ body.theme-dark .menu-item:hover {
     background: #1f2937;
 }
 
-
-/* Transparent / glass mode
-   Same light colors, but a little stronger / less see-through
-   so the panel still reads as its own app. */
-body.theme-transparent {
-    /* Use the same soft blue gradient, just much more transparent
-       and blurred so whatever is behind the page shines through. */
-    background: radial-gradient(
-        140% 140% at 0% 0%,
-        rgba(175,210,255,0.56),
-        rgba(230,240,255,0.50),
-        rgba(245,250,255,0.42)
-    );
-    backdrop-filter: blur(26px);
-    -webkit-backdrop-filter: blur(26px);
-}
-
-body.theme-transparent .home-container,
-body.theme-transparent .app-screen,
-body.theme-transparent .editor-wrapper,
-body.theme-transparent .during-wrapper {
-    /* Full-page glass sheet behind all cards */
-    background: rgba(244, 248, 255, 0.42);
-    backdrop-filter: blur(26px);
-    -webkit-backdrop-filter: blur(26px);
-}
-
-body.theme-transparent .main-inner {
-    background: rgba(255, 255, 255, 0.76); /* closer to original white */
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.40);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-body.theme-transparent .editor-container,
-body.theme-transparent .during-container {
-    background: rgba(228, 226, 255, 0.74); /* same lavender, less transparent */
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.40);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-body.theme-transparent #summaryCard {
-    background: rgba(255, 255, 255, 0.80);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.40);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-body.theme-transparent #screen-results .main-inner {
-    background: rgba(246, 241, 255, 0.80); /* same notebook lavender */
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.40);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-body.theme-transparent .left-panel {
-    background: rgba(255, 255, 255, 0.78); /* editor left card */
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
-
-body.theme-transparent .sidebar {
-    background: radial-gradient(
-        160% 160% at -20% -20%,
-        rgba(175,210,255,0.90),
-        rgba(220,235,255,0.82),
-        rgba(245,250,255,0.88)
-    );
-    border-right: 1px solid rgba(255, 255, 255, 0.55);
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.38);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
-
-/* Make inner white pieces glassy too (input bar + settings tray) */
-body.theme-transparent .input-wrapper {
-    background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.26);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
-
-body.theme-transparent .settings-panel {
-    background: rgba(255, 255, 255, 0.86);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.30);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
 
 
 /* Screen 1: sidebar and main panel */
@@ -929,7 +792,7 @@ body.theme-transparent .settings-panel {
     padding: 14px 18px;
     border-radius: 14px;
     margin: 0 auto 10px;
-    max-width: 780px;
+    max-width: 900px;
     display: flex;
     align-items: flex-start;     
     justify-content: flex-start;  
@@ -1323,59 +1186,4 @@ body.theme-dark .during-card.highlighted {
         max-height: 60vh;
         overflow-y: auto;
     }
-}
-
-/* Extra compact-mode tuning for narrow / split-screen windows */
-.layout-compact .editor-wrapper,
-.layout-compact .during-wrapper {
-    padding: 16px 8px;
-}
-
-.layout-compact .editor-container,
-.layout-compact .during-container {
-    padding: 0 0 56px 0;          /* extra bottom room for FAB + buttons */
-}
-
-.layout-compact .tab-header {
-    gap: 24px;
-    padding: 16px 16px;
-}
-
-.layout-compact .tab-btn {
-    font-size: 1.2rem;
-    padding: 8px 20px;
-}
-
-.layout-compact .tab-panel,
-.layout-compact .during-panel {
-    padding: 16px 10px 16px;
-    max-height: 58vh;             /* keep list from running under controls */
-    overflow-y: auto;
-}
-
-.layout-compact .task-card,
-.layout-compact .during-card {
-    max-width: 340px;             /* narrower cards so they don’t stretch */
-    margin: 0 auto 14px;          /* center and add vertical breathing room */
-    padding: 10px 14px;
-    font-size: 0.95rem;
-    line-height: 1.35;
-}
-
-.layout-compact .check-box {
-    width: 32px;
-    height: 32px;
-    font-size: 18px;
-}
-
-.layout-compact .add-btn,
-.layout-compact .during-add-btn {
-    width: 56px;
-    height: 56px;
-    bottom: 16px;
-    right: 12px;
-}
-
-.layout-compact .review-btn {
-    margin: 24px auto 8px;        /* sit just above the FAB */
 }

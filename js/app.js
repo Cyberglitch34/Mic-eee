@@ -911,10 +911,7 @@ if (resultsBackHomeBtn) {
 /* Settings modal and theme/layout toggles */
 const settingsButtons = document.querySelectorAll(".settings-btn");
 const settingsPanel = document.getElementById("settingsPanel");
-const layoutComfortableBtn = document.getElementById("layoutComfortable");
-const layoutCompactBtn = document.getElementById("layoutCompact");
 const darkModeToggle = document.getElementById("darkModeToggle");
-const transparentModeToggle = document.getElementById("transparentModeToggle");
 
 if (settingsPanel && settingsButtons.length > 0) {
     settingsButtons.forEach(btn => {
@@ -924,45 +921,12 @@ if (settingsPanel && settingsButtons.length > 0) {
     });
 }
 
-if (layoutComfortableBtn) {
-    layoutComfortableBtn.addEventListener("click", () => {
-        document.body.classList.remove("layout-compact");
-    });
-}
-
-if (layoutCompactBtn) {
-    layoutCompactBtn.addEventListener("click", () => {
-        document.body.classList.add("layout-compact");
-    });
-}
-
 if (darkModeToggle) {
     darkModeToggle.addEventListener("change", () => {
         if (darkModeToggle.checked) {
             document.body.classList.add("theme-dark");
-            // Dark and transparent are meant to be separate looks;
-            // turning on dark turns off transparent.
-            if (transparentModeToggle) {
-                transparentModeToggle.checked = false;
-            }
-            document.body.classList.remove("theme-transparent");
         } else {
             document.body.classList.remove("theme-dark");
-        }
-    });
-}
-
-if (transparentModeToggle) {
-    transparentModeToggle.addEventListener("change", () => {
-        if (transparentModeToggle.checked) {
-            document.body.classList.add("theme-transparent");
-            // Transparent uses the light palette, so disable dark mode.
-            if (darkModeToggle) {
-                darkModeToggle.checked = false;
-            }
-            document.body.classList.remove("theme-dark");
-        } else {
-            document.body.classList.remove("theme-transparent");
         }
     });
 }
