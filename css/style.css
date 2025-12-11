@@ -793,14 +793,22 @@ body.theme-dark .menu-item:hover {
     border-radius: 14px;
     margin: 0 auto 10px;
     max-width: 900px;
+    min-width: 0;
     display: flex;
-    align-items: flex-start;     
+    align-items: center;    
     justify-content: flex-start;  
     gap: 16px;                 
     font-size: 1.05rem;
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     transition: background 0.25s ease, box-shadow 0.2s ease, transform 0.1s ease;
+}
+.during-text {
+    display: block;
+    flex: 1 1 auto;    
+    min-width: 0;      
+    max-width: 760px;  
+    white-space: normal;
 }
 
 .during-card.completed {
@@ -841,6 +849,8 @@ body.theme-dark .during-card.highlighted {
     align-items: center;
     font-size: 22px;
     background: white;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
 .check-box.checked {
