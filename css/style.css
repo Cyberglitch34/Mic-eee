@@ -200,9 +200,9 @@ body.layout-compact #summaryCard .action-item {
 }
 
 /* Editor screen in compact mode:
-   side-by-side layout like comfy
-   mode, but scaled down to fit a
-   narrow window. */
+   keep side-by-side layout but
+   scale both panels down slightly
+   for narrower, taller windows. */
 body.layout-compact #screen-editor .editor-wrapper {
     flex-direction: row;
     align-items: flex-start;
@@ -211,9 +211,9 @@ body.layout-compact #screen-editor .editor-wrapper {
 }
 
 body.layout-compact #screen-editor .left-panel {
-    flex: 0 0 160px;            /* very slim Mic-eee card */
-    max-width: 160px;
-    padding: 8px 10px 6px;      /* tight padding so sticky note can grow */
+    flex: 0 0 240px;            /* smaller than comfy, still readable */
+    max-width: 240px;
+    padding: 16px 16px 14px;
 }
 
 body.layout-compact #screen-editor .right-panel {
@@ -223,41 +223,40 @@ body.layout-compact #screen-editor .right-panel {
 }
 
 body.layout-compact #screen-editor .editor-container {
-    max-width: none;            /* let notebook use remaining width */
+    max-width: 680px;           /* scaled-down notebook width */
     width: 100%;
-    margin: 0;
+    margin: 0 auto;
 }
 
-/* Compact editor cards: fill the notepad width
-   with comfortable spacing and only vertical scroll. */
+/* Compact editor cards: slightly smaller text
+   so more content fits comfortably. */
 body.layout-compact #screen-editor .tab-panel {
-    padding: 16px 6px 72px 6px;  /* minimal side padding to use full width */
+    padding: 16px 10px 72px 10px;
 }
 
 body.layout-compact #screen-editor .task-card {
     max-width: 100%;
     width: 100%;
     margin: 0 0 10px 0;
-    font-size: 0.9rem;          /* slightly smaller text in compact mode */
-    padding: 10px 12px;
+    font-size: 0.95rem;
 }
 
-/* Shrink Mic-eee contents vertically in compact mode
-   so the notepad has more room underneath. */
+/* Mic-eee contents gently scaled down
+   to match the compact editor width. */
 body.layout-compact #screen-editor .left-mic {
-    width: 60px;
-    margin-bottom: 2px;
+    width: 90px;
+    margin-bottom: 4px;
 }
 
 body.layout-compact #screen-editor .left-message {
-    margin-top: 2px;
-    margin-bottom: 4px;
-    font-size: 0.85rem;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-size: 1rem;
 }
 
 body.layout-compact #screen-editor .start-meeting-img {
-    width: 120px;
-    margin-top: 6px;
+    width: 170px;
+    margin-top: 10px;
 }
 
 body.layout-compact #screen-editor .editor-footer-note {
