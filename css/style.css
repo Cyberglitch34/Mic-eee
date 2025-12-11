@@ -1323,3 +1323,58 @@ body.theme-dark .during-card.highlighted {
         overflow-y: auto;
     }
 }
+
+/* Extra compact-mode tuning for narrow / split-screen windows */
+.layout-compact .editor-wrapper,
+.layout-compact .during-wrapper {
+    padding: 16px 8px;
+}
+
+.layout-compact .editor-container,
+.layout-compact .during-container {
+    padding: 0 0 56px 0;          /* extra bottom room for FAB + buttons */
+}
+
+.layout-compact .tab-header {
+    gap: 24px;
+    padding: 16px 16px;
+}
+
+.layout-compact .tab-btn {
+    font-size: 1.2rem;
+    padding: 8px 20px;
+}
+
+.layout-compact .tab-panel,
+.layout-compact .during-panel {
+    padding: 16px 10px 16px;
+    max-height: 58vh;             /* keep list from running under controls */
+    overflow-y: auto;
+}
+
+.layout-compact .task-card,
+.layout-compact .during-card {
+    max-width: 340px;             /* narrower cards so they don’t stretch */
+    margin: 0 auto 14px;          /* center and add vertical breathing room */
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.layout-compact .check-box {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+}
+
+.layout-compact .add-btn,
+.layout-compact .during-add-btn {
+    width: 56px;
+    height: 56px;
+    bottom: 16px;
+    right: 12px;
+}
+
+.layout-compact .review-btn {
+    margin: 24px auto 8px;        /* sit just above the FAB */
+}
