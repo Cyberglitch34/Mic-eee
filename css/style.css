@@ -1,6 +1,12 @@
 /* Global styles */
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    margin: 0;            
+}
+
 body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
     background: radial-gradient(
         140% 140% at 0% 0%,
@@ -10,7 +16,7 @@ body {
     );
     background-attachment: fixed;
     min-height: 100vh;
-    font-size: 15px; /* slightly more compact overall */
+    font-size: 15px;
 }
 
 .app-screen { width: 100%; min-height: 100vh; }
@@ -116,6 +122,164 @@ body {
     display: block;
     margin: 8px auto 0;
     text-align: center;
+}
+
+/* Compact mode: shrink right-side content a bit so it
+   fits nicely when the window is snapped to one side. */
+body.layout-compact {
+    font-size: 14px;
+}
+
+body.layout-compact .main-panel {
+    padding: 20px 8px;
+}
+
+/* Home screen in compact mode: make the main card
+   smaller and fully visible in a narrow snapped window. */
+body.layout-compact #screen-home .main-panel {
+    align-items: center;
+    padding-top: 32px;
+}
+
+body.layout-compact .main-inner {
+    width: 100%;
+    max-width: 420px;   /* much narrower than comfy mode */
+    min-width: 0;
+    padding: 24px 20px;
+}
+
+body.layout-compact .input-wrapper {
+    width: 100%;
+    max-width: 360px;
+    margin: 18px auto;
+}
+
+body.layout-compact #summaryCard {
+    max-width: 420px;
+    width: 100%;
+}
+
+body.layout-compact .editor-wrapper,
+body.layout-compact .during-wrapper {
+    padding: 24px 24px;
+}
+
+body.layout-compact .editor-container,
+body.layout-compact .during-container {
+    max-width: 860px;
+    padding: 0 8px 32px;
+}
+
+/* Summary screen in compact mode: keep the card
+   centered and scaled down like the home card. */
+body.layout-compact #screen-summary .main-panel {
+    align-items: center;
+    padding-top: 32px;
+}
+
+/* Make the summary card less busy in
+   compact mode with slightly smaller
+   text and tighter spacing. */
+body.layout-compact #summaryCard .main-title {
+    font-size: 1.6rem;
+    margin-bottom: 8px;
+}
+
+body.layout-compact #summaryCard .main-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+body.layout-compact #summaryCard .summary-scroll-wrapper {
+    margin-top: 14px;
+}
+
+body.layout-compact #summaryCard .action-item {
+    padding: 6px 10px;
+    font-size: 0.95rem;
+}
+
+/* Editor screen in compact mode:
+   side-by-side layout like comfy
+   mode, but scaled down to fit a
+   narrow window. */
+body.layout-compact #screen-editor .editor-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 16px 16px 18px;
+}
+
+body.layout-compact #screen-editor .left-panel {
+    flex: 0 0 160px;            /* very slim Mic-eee card */
+    max-width: 160px;
+    padding: 8px 10px 6px;      /* tight padding so sticky note can grow */
+}
+
+body.layout-compact #screen-editor .right-panel {
+    flex: 1 1 auto;
+    min-width: 0;
+    justify-content: center;
+}
+
+body.layout-compact #screen-editor .editor-container {
+    max-width: none;            /* let notebook use remaining width */
+    width: 100%;
+    margin: 0;
+}
+
+/* Compact editor cards: fill the notepad width
+   with comfortable spacing and only vertical scroll. */
+body.layout-compact #screen-editor .tab-panel {
+    padding: 16px 6px 72px 6px;  /* minimal side padding to use full width */
+}
+
+body.layout-compact #screen-editor .task-card {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;          /* slightly smaller text in compact mode */
+    padding: 10px 12px;
+}
+
+/* Shrink Mic-eee contents vertically in compact mode
+   so the notepad has more room underneath. */
+body.layout-compact #screen-editor .left-mic {
+    width: 60px;
+    margin-bottom: 2px;
+}
+
+body.layout-compact #screen-editor .left-message {
+    margin-top: 2px;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+}
+
+body.layout-compact #screen-editor .start-meeting-img {
+    width: 120px;
+    margin-top: 6px;
+}
+
+body.layout-compact #screen-editor .editor-footer-note {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.65rem;
+}
+
+body.layout-compact .tab-header {
+    padding: 20px 20px;
+    gap: 32px;
+}
+
+body.layout-compact .tab-btn {
+    font-size: 1.4rem;
+    padding: 10px 24px;
+}
+
+body.layout-compact .tab-panel,
+body.layout-compact .during-panel {
+    max-height: 60vh;
+    overflow-y: auto;
 }
 
 /* Simple dark mode */
@@ -357,22 +521,31 @@ body.theme-dark .menu-item:hover {
 
 /* Main screen center card */
 .main-panel {
-    flex: 1;
+    flex: 1 1 auto;
     display: flex;
+    min-width: 0;   
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 32px 12px;
+    overflow-x: hidden; 
+}
+
+/* Home screen: same centering but pushed
+   further down in the comfy layout. */
+#screen-home .main-panel {
+    padding-top: 80px;
 }
 
 .main-inner {
-    width: 60%;
-    max-width: 760px;
+    width: min(90%, 820px);
+    min-width: 450px;
     background: white;
     padding: 40px 36px;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     text-align: center;
 }
+
 
 .main-inner img {
     width: 120px;
@@ -574,14 +747,16 @@ body.theme-dark .menu-item:hover {
 
 .editor-container {
     width: 100%;
-    max-width: 980px;
-    min-height: 560px;
+    max-width: 100%;
+    min-height: auto;
     background: #e4e2ff;  /* soft blue-lavender */
     position: relative;
     border-radius: 20px;
     padding: 0;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    overflow-x: hidden;
 }
 
 /* Tabs */
@@ -804,11 +979,9 @@ body.theme-dark .menu-item:hover {
     transition: background 0.25s ease, box-shadow 0.2s ease, transform 0.1s ease;
 }
 .during-text {
-    display: block;
-    flex: 1 1 auto;    
-    min-width: 0;      
-    max-width: 760px;  
-    white-space: normal;
+    flex: 1; 
+    min-width: 0;   
+    white-space: normal; 
 }
 
 .during-card.completed {
@@ -1166,19 +1339,26 @@ body.theme-dark .during-card.highlighted {
     }
 
     .home-container {
-        flex-direction: row;
-    }
+     display: flex;
+     width: 100%;
+     max-width: 100%;
+     min-height: 100vh;
+     overflow-x: hidden; 
+}
 
     .sidebar {
-        width: 230px;
-    }
+    width: 260px;
+    min-width: 200px;   
+    flex-shrink: 1;    
+}
 
     .main-inner,
     .editor-container,
     .during-container,
     #summaryCard {
-        max-width: 900px;
-        width: 90%;
+        width: 100%;
+        max-width: 1300px;
+        margin: auto;
     }
 
     .tab-header {
@@ -1195,5 +1375,21 @@ body.theme-dark .during-card.highlighted {
     .during-panel {
         max-height: 60vh;
         overflow-y: auto;
+    }
+
+    /* Override widths again when compact mode
+       is enabled so the card fits a skinny,
+       snapped-to-side window. */
+    body.layout-compact .main-inner {
+        max-width: 420px;
+    }
+
+    body.layout-compact #summaryCard {
+        max-width: 420px;
+    }
+
+    body.layout-compact .editor-container,
+    body.layout-compact .during-container {
+        max-width: 860px;
     }
 }

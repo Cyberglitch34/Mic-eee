@@ -911,6 +911,7 @@ if (resultsBackHomeBtn) {
 /* Settings modal and theme/layout toggles */
 const settingsButtons = document.querySelectorAll(".settings-btn");
 const settingsPanel = document.getElementById("settingsPanel");
+const compactModeToggle = document.getElementById("compactModeToggle");
 const darkModeToggle = document.getElementById("darkModeToggle");
 
 if (settingsPanel && settingsButtons.length > 0) {
@@ -918,6 +919,17 @@ if (settingsPanel && settingsButtons.length > 0) {
         btn.addEventListener("click", () => {
             settingsPanel.classList.toggle("hidden");
         });
+    });
+}
+
+// Compact mode: slightly smaller, split-screen-friendly layout
+if (compactModeToggle) {
+    compactModeToggle.addEventListener("change", () => {
+        if (compactModeToggle.checked) {
+            document.body.classList.add("layout-compact");
+        } else {
+            document.body.classList.remove("layout-compact");
+        }
     });
 }
 

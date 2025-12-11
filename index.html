@@ -256,6 +256,13 @@
 
     <div class="settings-row">
         <label class="settings-label">
+            <input type="checkbox" id="compactModeToggle">
+            Compact (Zoom)
+        </label>
+    </div>
+
+    <div class="settings-row">
+        <label class="settings-label">
             <input type="checkbox" id="darkModeToggle">
             Dark mode
         </label>
@@ -267,6 +274,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
-<script src="js/app.js"></script>
+<!-- Cache-bust app.js so browsers pick up latest compact-mode logic -->
+<script src="js/app.js?v=2"></script>
 </body>
 </html>
