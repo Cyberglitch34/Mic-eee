@@ -932,7 +932,7 @@ body.theme-transparent .settings-panel {
     max-width: 780px;   /* match editor card width */
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     font-size: 1.05rem;
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
@@ -967,8 +967,8 @@ body.theme-dark .during-card.highlighted {
 
 /* CHECKBOX */
 .check-box {
-    width: 38px;
-    height: 38px;
+    width: 75px;
+    height: 75px;
     border: 3px solid #222;
     border-radius: 6px;
     cursor: pointer;
