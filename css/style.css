@@ -1359,6 +1359,7 @@ body.theme-dark .during-card.highlighted {
     padding: 10px 14px;
     font-size: 0.95rem;
     line-height: 1.35;
+    align-items: flex-start;
 }
 
 .layout-compact .check-box {
