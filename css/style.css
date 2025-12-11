@@ -929,10 +929,11 @@ body.theme-transparent .settings-panel {
     padding: 14px 18px;
     border-radius: 14px;
     margin: 0 auto 10px;
-    max-width: 780px;   /* match editor card width */
+    max-width: 780px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;     
+    justify-content: flex-start;  
+    gap: 16px;                 
     font-size: 1.05rem;
     font-weight: 600;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
